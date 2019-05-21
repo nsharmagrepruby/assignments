@@ -5,13 +5,13 @@ class Calculation
     final_price=0.0
     salextax=0.0
     arrrayItems.each do |arrrayitem|
-      salextax +=  arrrayitem.price * 0.05
-      if arrrayitem.category.eql? 'books'
-        final_price = final_price + arrrayitem.price
-      elsif arrrayitem.category ==='food'
-        final_price = final_price + arrrayitem.price
+      salextax +=  arrrayitem.quantiity * arrrayitem.price * 0.05
+      if arrrayitem.category.== 'books'
+        final_price = final_price + arrrayitem.quantiity * arrrayitem.price
+      elsif arrrayitem.category == 'food'
+        final_price = final_price + arrrayitem.quantiity * arrrayitem.price
       elsif arrrayitem.category == 'medical'
-        final_price = final_price + arrrayitem.price
+        final_price = final_price + arrrayitem.quantiity * arrrayitem.price
       else
         final_price += arrrayitem.price + arrrayitem.price* 0.1
       end
