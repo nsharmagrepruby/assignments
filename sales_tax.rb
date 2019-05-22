@@ -1,32 +1,32 @@
 require_relative 'item'
 
 class Calculation
-  def last_price(arrrayItems)   
-    final_price=0.0
-    salextax=0.0
-    arrrayItems.each do |arrrayitem|
-      salextax +=  arrrayitem.quantiity * arrrayitem.price * 0.05
-      if arrrayitem.category.== 'books'
-        final_price = final_price + arrrayitem.quantiity * arrrayitem.price
-      elsif arrrayitem.category == 'food'
-        final_price = final_price + arrrayitem.quantiity * arrrayitem.price
-      elsif arrrayitem.category == 'medical'
-        final_price = final_price + arrrayitem.quantiity * arrrayitem.price
+  def last_price(items)   
+    final_price = 0.0
+    sales_tax = 0.0
+    items.each do |item|
+      sales_tax +=  item.quantiity * item.price * 0.05
+      if item.category == 'books'
+        final_price = final_price + item.quantiity * item.price
+      elsif item.category == 'food'
+        final_price = final_price + item.quantiity * item.price
+      elsif item.category == 'medical'
+        final_price = final_price + item.quantiity * item.price
       else
-        final_price += arrrayitem.price + arrrayitem.price* 0.1
+        final_price += item.price + item.price * 0.1
       end
-      puts final_price
+      final_price
     end
-    puts final_price
-    puts salextax
+    final_price
+    sales_tax
   end
 end
 
-i1 = ItemClass.new(1, 12.49, 'books')
-i2 = ItemClass.new(1, 0.85, 'food')
-i3 = ItemClass.new(1, 16.49, 'cd')
+i1 = Item.new(1, 12.49, 'books')
+i2 = Item.new(1, 0.85, 'food')
+i3 = Item.new(1, 16.49, 'cd')
 
 
 items = Array.[](i1, i2, i3)
 calculation = Calculation.new
-calculation.last_price(items)
+print calculation.last_price(items)
