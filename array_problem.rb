@@ -11,16 +11,16 @@ class Solution
 		i=subArray.size
 		j=0
 			while j<i
-			puts subArray[j]
-			value=@hashes[subArray[j]]
-			puts "value", value	
+			 puts subArray[j]
+			 value=@hashes[subArray[j]]
+			 puts "value", value	
 				if value!=nil
-				value=value+1
-				@hashes.store(subArray[j],value)
+				  value=value+1
+				  @hashes.store(subArray[j],value)
 				else
-				@hashes.store(subArray[j],1)
+				  @hashes.store(subArray[j],1)
 				end
-			j=j+1
+			  j=j+1
 			end
 		end
 	end	

@@ -1,32 +1,72 @@
 require_relative 'item'
 
-class Calculation
-  def last_price(items)   
+class SalesTax
+  def last_price(items)
     final_price = 0.0
     sales_tax = 0.0
-    items.each do |item|
-      sales_tax +=  item.quantiity * item.price * 0.05
-      if item.category == 'books'
-        final_price = final_price + item.quantiity * item.price
+    items.each do |item|      
+      if item.is_imported
+        sales_tax += item.final_price * 0.05
+      end
+
+      if item.category == 'book'
+        tax_price = item.quantiity * item.price
+        item.tax_added_price(tax_price + item.price)
+        final_price += tax_price
       elsif item.category == 'food'
-        final_price = final_price + item.quantiity * item.price
+        tax_price = item.quantiity * item.price
+        item.tax_added_price(tax_price + item.price)
+        final_price += tax_price
       elsif item.category == 'medical'
-        final_price = final_price + item.quantiity * item.price
+        tax_price = item.quantiity * item.price
+        item.tax_added_price(tax_price + item.price)
+        final_price += tax_price
+      elsif item.category == 'music'
+        tax_price = item.quantiity * item.price
+        item.tax_added_price(tax_price + item.price)
+        final_price += tax_price
+      elsif item.category == 'chocolate'
+        tax_price = item.quantiity * item.price
+        item.tax_added_price(tax_price + item.price)
+        final_price += tax_price
       else
         final_price += item.price + item.price * 0.1
       end
-      final_price
-    end
-    final_price
-    sales_tax
+      puts "#{item.quantiity} #{item.category} at #{item.get_tax_added_price}"
+      end
+    puts "sales tax #{sales_tax}"
+    puts "Final price #{final_price}"
   end
 end
 
-i1 = Item.new(1, 12.49, 'books')
-i2 = Item.new(1, 0.85, 'food')
-i3 = Item.new(1, 16.49, 'cd')
+puts 'Total number of inputs'
+inputs = gets.to_i
+i = 0
+items = []
+while i < inputs
+  string = gets
+  item_number = string[0, 1]
+  imported = string.include?(' imported')
+  price_index = string.index(':')
+  price = string[price_index + 1, string.size].to_f
+  category = 'other'
+  if string.include?('book')
+    category = 'book'
+  elsif string.include?('food')
+    category = 'food'
+  elsif  string.include?('medical')
+    category = 'medical'
+  elsif  string.include?('music')
+    category = 'music'
+  elsif  string.include?('chocolate')
+    category = 'chocolate'
+  end
 
-
-items = Array.[](i1, i2, i3)
-calculation = Calculation.new
-print calculation.last_price(items)
+  i1 = Item.new(item_number, price, category, imported)
+  i1.show
+  items << i1
+  i += 1
+end
+p items
+salesTax = SalesTax.new
+salesTax.last_price(items)

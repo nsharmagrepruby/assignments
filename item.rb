@@ -1,8 +1,21 @@
 class Item
-  def initialize(quantiity, price, category)
-    @quantiity = quantiity
-    @price = price
+  def initialize(quantiity, price, category,is_imported)
+    @quantiity = quantiity.to_f
+    @price = price.to_f
     @category = category
+    @is_imported = is_imported
+  end
+
+  def is_imported
+    @is_imported
+  end
+
+  def get_tax_added_price 
+    @taxed_price
+  end
+
+  def tax_added_price (taxed_price) 
+    @taxed_price = taxed_price
   end
 
   def quantiity
@@ -26,7 +39,7 @@ class Item
   end
   
   def show
-    puts @quantiity , @price, @category
+    puts @quantiity , @price, @category ,@is_imported
   end
 end
 
