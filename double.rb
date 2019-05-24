@@ -1,22 +1,19 @@
-class CharSet
-	def initialize(arraya)
-	 @array=arraya
-	end
+class Double
 
+  def initialize(array)
+    @array = array
+  end
 
-	def double()
-	 @stringArraya=@array.split("")
-	 @stringArraya = @stringArraya.map { |stringArray|  stringArray *2 }
-	end
+  def double
+    @string_array = @array.split('')
+    @string_array = @string_array.map! { |string_array| string_array * 2 }
+  end
 
-	def show()
-	puts @stringArraya
-	end
-
-
+  def show
+    puts @string_array
+  end
 end
 
-
-a=CharSet.new("name")
-a.double()
-a.show()
+a = Double.new('name')
+a.double
+a.show
